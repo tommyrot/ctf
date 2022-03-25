@@ -155,7 +155,7 @@ ThrowGib(edict_t *self, char *gibname, int damage, int type)
 	gib->s.origin[2] = origin[2] + crandom() * size[2];
 
 	gi.setmodel(gib, gibname);
-	gib->solid = SOLID_BBOX;
+	gib->solid = SOLID_NOT;
 	gib->s.effects |= EF_GIB;
 	gib->flags |= FL_NO_KNOCKBACK;
 	gib->takedamage = DAMAGE_YES;
@@ -200,7 +200,7 @@ ThrowHead(edict_t *self, char *gibname, int damage, int type)
 
 	self->s.modelindex2 = 0;
 	gi.setmodel(self, gibname);
-	self->solid = SOLID_BBOX;
+	self->solid = SOLID_NOT;
 	self->s.effects |= EF_GIB;
 	self->s.effects &= ~EF_FLIES;
 	self->s.sound = 0;
@@ -257,7 +257,7 @@ ThrowClientHead(edict_t *self, int damage)
 	VectorSet(self->maxs, 16, 16, 16);
 
 	self->takedamage = DAMAGE_NO;
-	self->solid = SOLID_BBOX;
+	self->solid = SOLID_NOT;
 	self->s.effects = EF_GIB;
 	self->s.sound = 0;
 	self->flags |= FL_NO_KNOCKBACK;
@@ -303,7 +303,7 @@ ThrowDebris(edict_t *self, char *modelname, float speed, vec3_t origin)
 	v[2] = 100 + 100 * crandom();
 	VectorMA(self->velocity, speed, v, chunk->velocity);
 	chunk->movetype = MOVETYPE_BOUNCE;
-	chunk->solid = SOLID_BBOX;
+	chunk->solid = SOLID_NOT;
 	chunk->avelocity[0] = random() * 600;
 	chunk->avelocity[1] = random() * 600;
 	chunk->avelocity[2] = random() * 600;
@@ -1734,7 +1734,7 @@ void
 SP_misc_gib_arm(edict_t *ent)
 {
 	gi.setmodel(ent, "models/objects/gibs/arm/tris.md2");
-	ent->solid = SOLID_BBOX;
+	ent->solid = SOLID_NOT;
 	ent->s.effects |= EF_GIB;
 	ent->takedamage = DAMAGE_YES;
 	ent->die = gib_die;
@@ -1757,7 +1757,7 @@ void
 SP_misc_gib_leg(edict_t *ent)
 {
 	gi.setmodel(ent, "models/objects/gibs/leg/tris.md2");
-	ent->solid = SOLID_BBOX;
+	ent->solid = SOLID_NOT;
 	ent->s.effects |= EF_GIB;
 	ent->takedamage = DAMAGE_YES;
 	ent->die = gib_die;
@@ -1780,7 +1780,7 @@ void
 SP_misc_gib_head(edict_t *ent)
 {
 	gi.setmodel(ent, "models/objects/gibs/head/tris.md2");
-	ent->solid = SOLID_BBOX;
+	ent->solid = SOLID_NOT;
 	ent->s.effects |= EF_GIB;
 	ent->takedamage = DAMAGE_YES;
 	ent->die = gib_die;
